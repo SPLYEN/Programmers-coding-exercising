@@ -1,0 +1,53 @@
+#include <string>
+#include <vector>
+#include <stack>
+#include <iostream>
+
+using namespace std;
+
+int solution(string arrangement) {
+    
+    stack<char> s;
+   
+    int bar=0;
+    int num=0;
+    
+    for(int i=0;i<arrangement.size();i++)
+    {
+        if(s.empty())
+        {
+            s.push(arrangement.at(i));
+            bar++;
+            continue;
+        }
+        else if((s.top()=='(')&&(arrangement.at(i)==')'))
+        {
+            s.push(arrangement.at(i));
+            bar--;
+            num+=bar;
+            continue;
+        }
+        else if((s.top()=='(')&&(arrangement.at(i)=='('))
+        {
+            s.push(arrangement.at(i));
+            bar++;
+            continue;
+        }
+        else if((s.top()==')')&&(arrangement.at(i)==')'))
+        {
+            s.push(arrangement.at(i));
+            bar--;
+            num++;
+            continue;
+        }
+        if((s.top()==')')&&(arrangement.at(i)=='('))
+        {
+            s.push(arrangement.at(i));
+            bar++;
+            continue;
+        }
+    }
+    int answer = 0;
+    answer=num;
+    return answer;
+}
